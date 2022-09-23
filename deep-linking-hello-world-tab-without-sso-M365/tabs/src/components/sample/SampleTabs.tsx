@@ -1,6 +1,8 @@
-import { ReactElement } from "react";
+import { ReactElement, useState } from "react";
 import { Menu } from "@fluentui/react-northstar";
+import { Button, Image, Alert } from "@fluentui/react-northstar";
 import "./Welcome.css";
+import { pages, app } from "@microsoft/teams-js";
 
 type TabProps = {
     selectedTab: string,
@@ -8,11 +10,11 @@ type TabProps = {
     environment?: string,
 }
 export function SampleTabs(props: TabProps): ReactElement {
-    const steps = ["tab1", "tab2", "tab3"];
+    const steps = ["subpage1", "subpage2", "subpage3"];
     const friendlyStepsName: { [key: string]: string } = {
-        tab1: "Tab 1",
-        tab2: "Tab 2",
-        tab3: "Tab 3",
+        subpage1: "subpage 1",
+        subpage2: "subpage 2",
+        subpage3: "subpage 3",
     };
     const { selectedTab, onTabChange } = props;
     const items = steps.map((step) => {
@@ -24,36 +26,25 @@ export function SampleTabs(props: TabProps): ReactElement {
             },
         };
     });
+    const [selectedMenuItem, setSelectedMenuItem] = useState("subpage1");
 
     return (
         <div className="menu-container">
             <Menu activeIndex={steps.indexOf(selectedTab)} items={items} underlined secondary />
             <div className="sections">
-                {selectedTab === "tab1" && (
+                {selectedTab === "subpage1" && (
                     <div>
                         <p>You selected Tab 1</p>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                            Quis recusandae quibusdam doloremque repellendus voluptatibus eaque pariatur officia perferendis deleniti,
-                            quasi numquam quas veniam quos maxime iusto delectus beatae dolores iste?
-                        </p>
                     </div>
                 )}
-                {selectedTab === "tab2" && (
+                {selectedTab === "subpage2" && (
                     <div>
                         <p>You selected Tab 2</p>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                            Quis recusandae quibusdam doloremque repellendus voluptatibus eaque pariatur officia perferendis deleniti,
-                            quasi numquam quas veniam quos maxime iusto delectus beatae dolores iste?
-                        </p>
                     </div>
                 )}
-                {selectedTab === "tab3" && (
+                {selectedTab === "subpage3" && (
                     <div>
                         <p>You selected Tab 3</p>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                            Quis recusandae quibusdam doloremque repellendus voluptatibus eaque pariatur officia perferendis deleniti,
-                            quasi numquam quas veniam quos maxime iusto delectus beatae dolores iste?
-                        </p>
                     </div>
                 )}
             </div>

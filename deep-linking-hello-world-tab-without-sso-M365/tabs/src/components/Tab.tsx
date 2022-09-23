@@ -1,10 +1,11 @@
 import React from "react";
-import { Welcome } from "./sample/Welcome";
+import NavigateWithinApp from "./sample/NavigateWithinApp";
+import {Welcome} from "./sample/Welcome"
 
 export default function Tab() {
   return (
     <div>
-      <Welcome />
+      <NavigateWithinApp />
     </div>
   );
 }

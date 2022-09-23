@@ -1,10 +1,10 @@
 import { ReactElement, useState, useEffect } from "react";
 import { app, chat, people, mail } from "@microsoft/teams-js";
-import './sample/Welcome.css'
+import './Welcome.css'
 import { Button, ChatIcon, Flex, InfoIcon, Input, ParticipantAddIcon, TextArea, Text, EmailIcon } from "@fluentui/react-northstar";
 
 
-export default function NavigateWithinHub(): ReactElement {
+export default function HostCapabilities(): ReactElement {
     const [selectedUsersList, setSelectedUsersList] = useState([] as people.PeoplePickerResult[]);
     const [groupChatTitleTxt, setGroupChatTitleTxt] = useState("" as string);
     const [groupMessageTxt, setGroupMessageTxt] = useState("" as string);
@@ -35,7 +35,7 @@ export default function NavigateWithinHub(): ReactElement {
 
     }, [context, currentHubName])
 
-    const renderTeamsUI = () => {
+    const renderChatUI = () => {
         return <>
             <h1 className="center">Chat functionality</h1>
             <p className="center">Select users and start a group chat and it will open default chat application(MS Teams in this instance) app from any hub.</p>
@@ -54,6 +54,7 @@ export default function NavigateWithinHub(): ReactElement {
                                 <p>Select users to start your group chat with: </p>
                                 <Button content={selectedUsersList && selectedUsersList.length > 0 ? `${selectedUsersList.length} users selected ` : ""} primary icon={<ParticipantAddIcon />} onClick={() => {
                                     if (people.isSupported()) {
+                                        //TODO: Convert callback to promise, for more info, please refer to https://aka.ms/teamsfx-callback-to-promise.
                                         const peoplePromise = people.selectPeople({ title: 'Select people to chat with', openOrgWideSearchInChatOrChannel: true, singleSelect: false, setSelected: (selectedUsersList.map(x => x.objectId) as string[]) });
                                         peoplePromise.then((result) => {
                                             setSelectedUsersList(result);
@@ -95,9 +96,9 @@ export default function NavigateWithinHub(): ReactElement {
             </div>
         </>;
     }
-    const renderOutlookUI = () => {
+    const renderMailUI = () => {
         return <>
-            <h1 className="center">Mail functionality</h1>
+            <h1 className="center">Mail capability</h1>
             <p className="center">Enter email addresses to start composing your email.</p>
             <div className="sections">
                 <div id="open-chat-section">
@@ -130,6 +131,7 @@ export default function NavigateWithinHub(): ReactElement {
                                 });
                             }
                             else {
+                                //This needs to be supported on Outlook Desktop to make a good sample
                                 alert("Functionality not supported in web version. Please use Outlook desktop app to test it.");
                             }
                         }} />
@@ -138,27 +140,27 @@ export default function NavigateWithinHub(): ReactElement {
             </div>
         </>
     }
-    const renderOfficeUI = () => {
-        return <><h2>Capablities not supported</h2></>
+    const renderNoCapability = () => {
+        return <><h2>Chat or mail capablities are not supported on this host.</h2></>
     }
-    const renderUIBasedOnHub = () => {
+    const renderUIBasedOnCapability = () => {
 
+        // Might need a better mechanism
         if (!currentHubName || currentHubName === "") {
             return <h2>Loading...</h2>
         }
-        if (currentHubName === "Teams")
-            return renderTeamsUI();
-        if (currentHubName === "Outlook")
-            return renderOutlookUI();
-        if (currentHubName === "Office")
-            return renderOfficeUI();
-
+        if (chat.isSupported())
+            return renderChatUI();
+        else if (mail.isSupported())
+            return renderMailUI();
+        else 
+            return renderNoCapability();
     }
     return (
         <div>
             <div className="welcome page">
                 <div className="narrow page-padding">
-                    {renderUIBasedOnHub()}
+                    {renderUIBasedOnCapability()}
                 </div>
             </div>
         </div>

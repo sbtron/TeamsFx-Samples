@@ -6,11 +6,12 @@ import Privacy from "./Privacy";
 import TermsOfUse from "./TermsOfUse";
 import Tab from "./Tab";
 import "./App.css";
-import TabConfig from "./TabConfig";
 import { useTeams } from "msteams-react-base-component";
-import TabDetails from "./TabDetails";
-import NavigateWithinApp from "./NavigateWithinApp";
-import NavigateWithinHub from "./NavigateWithinHub";
+import NavigateWithinApp from "./sample/NavigateWithinApp";
+import HostCapabilities from "./sample/HostCapabilities";
+import { ShareLink } from "./sample/ShareLink";
+import { shareDeepLink } from "@microsoft/teams-js";
+
 
 /**
  * The main app which handles the initialization and routing
@@ -25,14 +26,13 @@ export default function App() {
           <Redirect to="/tab" />
         </Route>
         <>
-          <Route exact path="/navigateWithinHub" component={NavigateWithinHub} />
-          <Route exact path="/navigateWithinApp" component={NavigateWithinApp} />
-          <Route exact path="/tabdetails/:typeOfTab" component={TabDetails} />
-          <Route exact path="/tabdetails" component={TabDetails} />
+          <Route exact path="/tab" component={Tab} />
+          <Route exact path="/navigatewithinapp" component={NavigateWithinApp} />
+          <Route exact path="/sharelink" component={ShareLink} />
+          <Route exact path="/hostcapabilities" component={HostCapabilities} />
           <Route exact path="/privacy" component={Privacy} />
           <Route exact path="/termsofuse" component={TermsOfUse} />
-          <Route exact path="/tab" component={Tab} />
-          <Route exact path="/config" component={TabConfig} />
+          
         </>
       </Router>
     </Provider>

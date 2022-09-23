@@ -1,0 +1,28 @@
+{
+    "solution": {
+        "provisionSucceeded": true,
+        "teamsAppTenantId": "86ead2c9-3205-46fe-a3de-24d6b61c3a14",
+        "subscriptionId": "28f8ccf0-79d2-4d4f-aed8-f36bf47c2667",
+        "subscriptionName": "My MSDN Subscription",
+        "tenantId": "cc6ce72c-dfc3-4b8a-9072-9a8c5cd8da3c",
+        "needCreateResourceGroup": true,
+        "resourceGroupName": "deep_linking-dev-rg",
+        "location": "West Central US",
+        "resourceNameSuffix": "bce6e6"
+    },
+    "fx-resource-appstudio": {
+        "tenantId": "86ead2c9-3205-46fe-a3de-24d6b61c3a14",
+        "teamsAppId": "860d6892-d4ef-45bd-8027-81a02cf63f2a"
+    },
+    "fx-resource-frontend-hosting": {
+        "indexPath": "/index.html#",
+        "domain": "deeplinkdevbce6e6tab.z4.web.core.windows.net",
+        "endpoint": "https://deeplinkdevbce6e6tab.z4.web.core.windows.net",
+        "storageResourceId": "/subscriptions/28f8ccf0-79d2-4d4f-aed8-f36bf47c2667/resourceGroups/deep_linking-dev-rg/providers/Microsoft.Storage/storageAccounts/deeplinkdevbce6e6tab"
+    },
+    "fx-resource-identity": {
+        "identityName": "deeplinkdevbce6e6",
+        "identityResourceId": "/subscriptions/28f8ccf0-79d2-4d4f-aed8-f36bf47c2667/resourceGroups/deep_linking-dev-rg/providers/Microsoft.ManagedIdentity/userAssignedIdentities/deeplinkdevbce6e6",
+        "identityClientId": "5659e7df-6253-4000-9437-5ac552f0f40a"
+    }
+}
